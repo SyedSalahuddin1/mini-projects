@@ -1,4 +1,4 @@
-def marks_analyzer():
+def get_student_data():
     print("="*30)
     print("STUDENT MARKS ANALYZER!")
     print("="*30)
@@ -12,11 +12,23 @@ def marks_analyzer():
         name = input("Please enter the name of the student: ")
         marks = float(input("Please enter marks: "))
         student_marks[name] = marks
-        
+    
+    return student_marks
+    
+def calculate_stats(student_marks):
     total = sum(student_marks.values())
     average = total/ len(student_marks)
     highest_score = max(student_marks.values())
     top_scorer = max(student_marks, key=lambda name: student_marks[name])
+    
+    return {
+        "total": total,
+        "average": average,
+        "highest_score": highest_score,
+        "top_scorer": top_scorer 
+    }
+    
+def marks_analyzer(student_marks, stats):
     
     print("=="*30)
 
@@ -27,12 +39,16 @@ def marks_analyzer():
     
     print("=="*30)
     
-    print(f"Total Marks : {total}")
-    print(f"Average Marks: {average:.2f}")
-    print(f"Highest Marks: {highest_score}")
-    print(f"Top Scorer: {top_scorer} with {highest_score} marks.")
+    print(f"Total Marks : {stats['total']}")
+    print(f"Average Marks: {stats['average']:.2f}")
+    print(f"Highest Marks: {stats['highest_score']}")
+    print(f"Top Scorer: {stats['top_scorer']} with {stats['highest_score']} marks.")
     print("=="*30)
 
 
 if __name__ == "__main__":
-    marks_analyzer()
+    student_marks = get_student_data()
+    stats = calculate_stats(student_marks)
+    
+    marks_analyzer(student_marks, stats)
+    
