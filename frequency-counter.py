@@ -1,6 +1,3 @@
-from operator import le
-
-
 text = "Syed Salahuddin"
 
 fre = {
