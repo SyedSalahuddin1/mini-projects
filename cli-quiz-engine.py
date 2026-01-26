@@ -6,6 +6,7 @@ def get_questions():
             "correct": 3
         },
         {
+            
           "question": "Who is the current Welterweight Champion of UFC:",
           "options": ["Kumaru Usman", "JDM", "Islam"],
           "correct":3
@@ -73,6 +74,4 @@ def main():
 if __name__ == "__main__":
     main()
     
-        
-    
-    
+            

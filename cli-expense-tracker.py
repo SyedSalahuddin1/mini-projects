@@ -1,28 +1,65 @@
-expenses = [
-    {
-        "amount":1200, "category":"Food", "Note":"3 Times Food",
-        "amount":800, "category":"Travel", "Note":"Petrol"
-    }
-]
-
-def add_expenses(expenses):
-    num_of_expenses = int(input("Please enter the amount of expenses: "))
+def get_int(prompt):
     
-    for i in range(num_of_expenses):
-        print(f"Expense {i+1}: ")
-        amount = float("Please enter the amount: ")
-        category = input("Enter the Category: ")
-        note = input("Enter the category: ")
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Please enter only number")
+            
+
+def get_float(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Please enter only floating numbers")
+            
+def get_string(prompt):
+    while True:
+        value = input(prompt).strip()
+        if value:
+            return value
+        print("Input cannot be empty.")
+
+
+class ExpenseTracker():
+    def __init__(self):
+        self.expenses = []
         
-        bills = {
+    def add_expense(self):
+        amount =  get_float("Enter amount: ")
+        category = get_string("Enter category: ")
+        note = get_string("Enter note: ")
+        
+        expense = {
             "amount": amount,
             "category": category,
-            "note": note
+            "note": note 
         }
         
-        expenses.append(bills)
+        self.expenses.append(expense)
+
+
+
+# def add_expenses(expenses):
+    
+#     num_of_expenses = get_int("Enter number of expense: ")
+    
+#     for i in range(num_of_expenses):
+#         print(f"Expense {i+1}: ")
+#         amount = get_float("Please enter the amount: ")
+#         category = get_string("Enter the Category: ")
+#         note = get_string("Enter the note: ")
         
-    # return expenses
+#         bills = {
+#             "amount": amount,
+#             "category": category,
+#             "note": note
+#         }
+        
+#         expenses.append(bills)
+        
+#     # return expenses
     
 def view_expenses(expenses):
     if not expenses:
@@ -81,21 +118,21 @@ def menu():
         print("4. Category Summary")
         print("5. Exit")
 
-        choice = input("Enter your choice (1-5): ")
+        choice = get_int("Enter your choice (1-5): ")
 
-        if choice == "1":
+        if choice == 1:
             add_expenses(expenses)
 
-        elif choice == "2":
+        elif choice == 2:
             view_expenses(expenses)
 
-        elif choice == "3":
+        elif choice == 3:
             total_expenses(expenses)
 
-        elif choice == "4":
+        elif choice == 4:
             category_expenses(expenses)
 
-        elif choice == "5":
+        elif choice == 5:
             print("Goodbye!")
             break
 
